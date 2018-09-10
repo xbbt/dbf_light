@@ -124,8 +124,9 @@ class Dbf(object):
             is_deleted = marker == b'*'
 
             if is_deleted:
+                data = fileobj.read(sum(field.len for field in fields))
                 continue
-
+                
             row_values = []
             for field in fields:
                 val = field.cast(fileobj.read(field.len))
